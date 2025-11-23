@@ -1,0 +1,95 @@
+[2025-11-23T16:40:04.390+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.load_bronze_events scheduled__2025-11-23T16:35:00+00:00 [queued]>
+[2025-11-23T16:40:04.394+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.load_bronze_events scheduled__2025-11-23T16:35:00+00:00 [queued]>
+[2025-11-23T16:40:04.394+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 3
+[2025-11-23T16:40:04.403+0000] {taskinstance.py:2217} INFO - Executing <Task(SnowflakeOperator): load_bronze_events> on 2025-11-23 16:35:00+00:00
+[2025-11-23T16:40:04.410+0000] {standard_task_runner.py:60} INFO - Started process 1717 to run task
+[2025-11-23T16:40:04.414+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'load_bronze_events', 'scheduled__2025-11-23T16:35:00+00:00', '--job-id', '52', '--raw', '--subdir', 'DAGS_FOLDER/dbt_ecommerce_pipeline.py', '--cfg-path', '/tmp/tmpfw8qrt8q']
+[2025-11-23T16:40:04.416+0000] {standard_task_runner.py:88} INFO - Job 52: Subtask load_bronze_events
+[2025-11-23T16:40:04.462+0000] {task_command.py:423} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.load_bronze_events scheduled__2025-11-23T16:35:00+00:00 [running]> on host 4731e9e89e36
+[2025-11-23T16:40:04.508+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='load_bronze_events' AIRFLOW_CTX_EXECUTION_DATE='2025-11-23T16:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-23T16:35:00+00:00'
+[2025-11-23T16:40:04.509+0000] {sql.py:276} INFO - Executing: 
+            USE DATABASE ECOMMERCE;
+            USE SCHEMA BRONZE;
+
+            COPY INTO EVENTS (
+                EVENT_ID,
+                EVENT_TYPE,
+                EVENT_TS,
+                USER_ID,
+                SESSION_ID,
+                PAYLOAD,
+                INSERTED_AT
+            )
+            FROM (
+                SELECT
+                    $1:event_id::string,
+                    $1:event_type::string,
+                    $1:event_ts::timestamp_ntz,
+                    $1:user_id::string,
+                    $1:session_id::string,
+                    $1:payload,
+                    CURRENT_TIMESTAMP()
+                FROM @ECOMMERCE_STAGE
+            )
+            FILE_FORMAT = (TYPE = JSON)
+            ON_ERROR = 'CONTINUE';
+        
+[2025-11-23T16:40:04.514+0000] {base.py:83} INFO - Using connection ID 'snowflake_default' for task execution.
+[2025-11-23T16:40:04.562+0000] {base.py:83} INFO - Using connection ID 'snowflake_default' for task execution.
+[2025-11-23T16:40:04.563+0000] {connection.py:386} INFO - Snowflake Connector for Python Version: 3.7.1, Python Version: 3.11.8, Platform: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.36
+[2025-11-23T16:40:04.564+0000] {connection.py:1211} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-11-23T16:40:05.171+0000] {cursor.py:1032} INFO - query: [ALTER SESSION SET autocommit=False]
+[2025-11-23T16:40:05.391+0000] {cursor.py:1045} INFO - query execution done
+[2025-11-23T16:40:05.391+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2025-11-23T16:40:05.392+0000] {sql.py:457} INFO - Running statement: USE DATABASE ECOMMERCE;, parameters: None
+[2025-11-23T16:40:05.392+0000] {cursor.py:1032} INFO - query: [USE DATABASE ECOMMERCE;]
+[2025-11-23T16:40:05.793+0000] {cursor.py:1045} INFO - query execution done
+[2025-11-23T16:40:05.793+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2025-11-23T16:40:05.794+0000] {sql.py:466} INFO - Rows affected: 1
+[2025-11-23T16:40:05.798+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.11/site-packages/airflow/providers/snowflake/hooks/snowflake.py:393 AirflowProviderDeprecationWarning: Call to deprecated method _make_common_data_structure. (The `_make_serializable` method is deprecated and support will be removed in a future version of the common.sql provider. Please update the DbApiHook's provider to a version based on common.sql >= 1.9.1.)
+[2025-11-23T16:40:05.798+0000] {snowflake.py:402} INFO - Rows affected: 1
+[2025-11-23T16:40:05.799+0000] {snowflake.py:403} INFO - Snowflake query id: 01c09648-0003-1a22-0004-4a7b0001251a
+[2025-11-23T16:40:05.799+0000] {sql.py:457} INFO - Running statement: USE SCHEMA BRONZE;, parameters: None
+[2025-11-23T16:40:05.799+0000] {cursor.py:1032} INFO - query: [USE SCHEMA BRONZE;]
+[2025-11-23T16:40:05.992+0000] {cursor.py:1045} INFO - query execution done
+[2025-11-23T16:40:05.992+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2025-11-23T16:40:05.993+0000] {sql.py:466} INFO - Rows affected: 1
+[2025-11-23T16:40:05.993+0000] {snowflake.py:402} INFO - Rows affected: 1
+[2025-11-23T16:40:05.993+0000] {snowflake.py:403} INFO - Snowflake query id: 01c09648-0003-1a22-0004-4a7b0001251e
+[2025-11-23T16:40:05.994+0000] {sql.py:457} INFO - Running statement: COPY INTO EVENTS (
+                EVENT_ID,
+                EVENT_TYPE,
+                EVENT_TS,
+                USER_ID,
+                SESSION_ID,
+                PAYLOAD,
+                INSERTED_AT
+            )
+            FROM (
+                SELECT
+                    $1:event_id::string,
+                    $1:event_type::string,
+                    $1:event_ts::timestamp_ntz,
+                    $1:user_id::string,
+                    $1:session_id::string,
+                    $1:payload,
+                    CURRENT_TIMESTAMP()
+                FROM @ECOMMERCE_STAGE
+            )
+            FILE_FORMAT = (TYPE = JSON)
+            ON_ERROR = 'CONTINUE';, parameters: None
+[2025-11-23T16:40:05.994+0000] {cursor.py:1032} INFO - query: [COPY INTO EVENTS ( EVENT_ID, EVENT_TYPE, EVENT_TS, USER_ID, SESSION_ID, PAYLOAD,...]
+[2025-11-23T16:40:07.760+0000] {cursor.py:1045} INFO - query execution done
+[2025-11-23T16:40:07.760+0000] {cursor.py:1205} INFO - Number of results in first chunk: 2
+[2025-11-23T16:40:07.761+0000] {sql.py:466} INFO - Rows affected: 2
+[2025-11-23T16:40:07.761+0000] {snowflake.py:402} INFO - Rows affected: 2
+[2025-11-23T16:40:07.761+0000] {snowflake.py:403} INFO - Snowflake query id: 01c09648-0003-1a22-0004-4a7b00012522
+[2025-11-23T16:40:07.762+0000] {cursor.py:1032} INFO - query: [COMMIT]
+[2025-11-23T16:40:08.194+0000] {cursor.py:1045} INFO - query execution done
+[2025-11-23T16:40:08.194+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2025-11-23T16:40:08.194+0000] {connection.py:734} INFO - closed
+[2025-11-23T16:40:08.331+0000] {connection.py:740} INFO - No async queries seem to be running, deleting session
+[2025-11-23T16:40:08.485+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dbt_ecommerce_pipeline, task_id=load_bronze_events, execution_date=20251123T163500, start_date=20251123T164004, end_date=20251123T164008
+[2025-11-23T16:40:08.520+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-11-23T16:40:08.530+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py:1201 AirflowProviderDeprecationWarning: Call to deprecated class SnowflakeOperator. (This class is deprecated. Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`. Also, you can provide `hook_params={'warehouse': <warehouse>, 'database': <database>, 'role': <role>, 'schema': <schema>, 'authenticator': <authenticator>,'session_parameters': <session_parameters>}`.)
+[2025-11-23T16:40:08.538+0000] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

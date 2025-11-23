@@ -1,0 +1,48 @@
+[2025-11-23T04:05:59.894+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-11-23T04:05:59.913+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_deps manual__2025-11-23T04:05:13.282889+00:00 [queued]>
+[2025-11-23T04:05:59.918+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_deps manual__2025-11-23T04:05:13.282889+00:00 [queued]>
+[2025-11-23T04:05:59.919+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 3
+[2025-11-23T04:05:59.931+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_deps> on 2025-11-23 04:05:13.282889+00:00
+[2025-11-23T04:05:59.942+0000] {standard_task_runner.py:63} INFO - Started process 219 to run task
+[2025-11-23T04:05:59.946+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'dbt_deps', 'manual__2025-11-23T04:05:13.282889+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_dbt_pipeline.py', '--cfg-path', '/tmp/tmpngloq9v1']
+[2025-11-23T04:05:59.949+0000] {standard_task_runner.py:91} INFO - Job 5: Subtask dbt_deps
+[2025-11-23T04:05:59.995+0000] {task_command.py:426} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.dbt_deps manual__2025-11-23T04:05:13.282889+00:00 [running]> on host 38e90b6fd9d9
+[2025-11-23T04:06:00.047+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='dbt_deps' AIRFLOW_CTX_EXECUTION_DATE='2025-11-23T04:05:13.282889+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-11-23T04:05:13.282889+00:00'
+[2025-11-23T04:06:00.048+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-11-23T04:06:00.061+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-11-23T04:06:00.062+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    rm -rf /tmp/dbt_runtime &&     mkdir -p /tmp/dbt_runtime &&     cp -r /opt/airflow/dbt/ecommerce_dbt /tmp/dbt_runtime/ecommerce_dbt &&     cd /tmp/dbt_runtime/ecommerce_dbt &&     dbt deps       --project-dir /tmp/dbt_runtime/ecommerce_dbt       --profiles-dir /home/airflow/.dbt\n    ']
+[2025-11-23T04:06:00.072+0000] {subprocess.py:86} INFO - Output:
+[2025-11-23T04:06:03.283+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-11-23T04:06:03.284+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/bin/dbt", line 5, in <module>
+[2025-11-23T04:06:03.284+0000] {subprocess.py:93} INFO -     from dbt.cli.main import cli
+[2025-11-23T04:06:03.285+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/dbt/cli/__init__.py", line 1, in <module>
+[2025-11-23T04:06:03.285+0000] {subprocess.py:93} INFO -     from .main import cli as dbt_cli  # noqa
+[2025-11-23T04:06:03.285+0000] {subprocess.py:93} INFO -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2025-11-23T04:06:03.285+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/dbt/cli/main.py", line 14, in <module>
+[2025-11-23T04:06:03.286+0000] {subprocess.py:93} INFO -     from dbt.cli import params as p
+[2025-11-23T04:06:03.286+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/dbt/cli/params.py", line 13, in <module>
+[2025-11-23T04:06:03.286+0000] {subprocess.py:93} INFO -     from dbt.cli.options import MultiOption
+[2025-11-23T04:06:03.287+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.12/site-packages/dbt/cli/options.py", line 6, in <module>
+[2025-11-23T04:06:03.287+0000] {subprocess.py:93} INFO -     from click.parser import _OptionParser, _ParsingState
+[2025-11-23T04:06:03.287+0000] {subprocess.py:93} INFO - ImportError: cannot import name '_OptionParser' from 'click.parser' (/home/airflow/.local/lib/python3.12/site-packages/click/parser.py). Did you mean: 'OptionParser'?
+[2025-11-23T04:06:03.373+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-11-23T04:06:03.374+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-11-23T04:06:03.380+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-11-23T04:06:03.383+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=dbt_ecommerce_pipeline, task_id=dbt_deps, run_id=manual__2025-11-23T04:05:13.282889+00:00, execution_date=20251123T040513, start_date=20251123T040559, end_date=20251123T040603
+[2025-11-23T04:06:03.394+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 5 for task dbt_deps (Bash command failed. The command returned a non-zero exit code 1.; 219)
+[2025-11-23T04:06:03.406+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-11-23T04:06:03.420+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-11-23T04:06:03.420+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

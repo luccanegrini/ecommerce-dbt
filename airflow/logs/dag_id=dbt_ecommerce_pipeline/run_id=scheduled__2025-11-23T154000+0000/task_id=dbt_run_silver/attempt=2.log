@@ -1,0 +1,33 @@
+[2025-11-23T15:47:17.965+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_run_silver scheduled__2025-11-23T15:40:00+00:00 [queued]>
+[2025-11-23T15:47:17.969+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_run_silver scheduled__2025-11-23T15:40:00+00:00 [queued]>
+[2025-11-23T15:47:17.970+0000] {taskinstance.py:2193} INFO - Starting attempt 2 of 3
+[2025-11-23T15:47:17.980+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): dbt_run_silver> on 2025-11-23 15:40:00+00:00
+[2025-11-23T15:47:17.987+0000] {standard_task_runner.py:60} INFO - Started process 389 to run task
+[2025-11-23T15:47:17.990+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'dbt_run_silver', 'scheduled__2025-11-23T15:40:00+00:00', '--job-id', '65', '--raw', '--subdir', 'DAGS_FOLDER/dbt_ecommerce_pipeline.py', '--cfg-path', '/tmp/tmpn68hd6gw']
+[2025-11-23T15:47:17.992+0000] {standard_task_runner.py:88} INFO - Job 65: Subtask dbt_run_silver
+[2025-11-23T15:47:18.039+0000] {task_command.py:423} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.dbt_run_silver scheduled__2025-11-23T15:40:00+00:00 [running]> on host 7244b0bf02d5
+[2025-11-23T15:47:18.089+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='luccanegrini@outlook.com.br' AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run_silver' AIRFLOW_CTX_EXECUTION_DATE='2025-11-23T15:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-23T15:40:00+00:00'
+[2025-11-23T15:47:18.091+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-11-23T15:47:18.092+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    rm -rf /tmp/dbt_runtime &&     mkdir -p /tmp/dbt_runtime &&     cp -r /opt/airflow/dbt/ecommerce_dbt /tmp/dbt_runtime/ecommerce_dbt &&     cd /tmp/dbt_runtime/ecommerce_dbt &&     dbt run --select tag:silver       --project-dir /tmp/dbt_runtime/ecommerce_dbt       --profiles-dir /home/airflow/.dbt\n    ']
+[2025-11-23T15:47:18.104+0000] {subprocess.py:86} INFO - Output:
+[2025-11-23T15:47:21.733+0000] {subprocess.py:93} INFO - [0m15:47:21  Running with dbt=1.7.19
+[2025-11-23T15:47:21.735+0000] {subprocess.py:93} INFO - [0m15:47:21  Encountered an error:
+[2025-11-23T15:47:21.735+0000] {subprocess.py:93} INFO - Runtime Error
+[2025-11-23T15:47:21.736+0000] {subprocess.py:93} INFO -   Could not find profile named 'ecommerce_dbt'
+[2025-11-23T15:47:22.467+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-11-23T15:47:22.474+0000] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-11-23T15:47:22.477+0000] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=dbt_ecommerce_pipeline, task_id=dbt_run_silver, execution_date=20251123T154000, start_date=20251123T154717, end_date=20251123T154722
+[2025-11-23T15:47:22.486+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 65 for task dbt_run_silver (Bash command failed. The command returned a non-zero exit code 2.; 389)
+[2025-11-23T15:47:22.533+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-11-23T15:47:22.543+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py:1201 AirflowProviderDeprecationWarning: Call to deprecated class SnowflakeOperator. (This class is deprecated. Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`. Also, you can provide `hook_params={'warehouse': <warehouse>, 'database': <database>, 'role': <role>, 'schema': <schema>, 'authenticator': <authenticator>,'session_parameters': <session_parameters>}`.)
+[2025-11-23T15:47:22.551+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

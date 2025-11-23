@@ -1,0 +1,48 @@
+[2025-11-23T16:05:11.595+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_run_silver scheduled__2025-11-23T16:00:00+00:00 [queued]>
+[2025-11-23T16:05:11.606+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_run_silver scheduled__2025-11-23T16:00:00+00:00 [queued]>
+[2025-11-23T16:05:11.606+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 3
+[2025-11-23T16:05:11.627+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): dbt_run_silver> on 2025-11-23 16:00:00+00:00
+[2025-11-23T16:05:11.634+0000] {standard_task_runner.py:60} INFO - Started process 309 to run task
+[2025-11-23T16:05:11.637+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'dbt_run_silver', 'scheduled__2025-11-23T16:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/dbt_ecommerce_pipeline.py', '--cfg-path', '/tmp/tmpm43vjgx7']
+[2025-11-23T16:05:11.639+0000] {standard_task_runner.py:88} INFO - Job 9: Subtask dbt_run_silver
+[2025-11-23T16:05:11.708+0000] {task_command.py:423} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.dbt_run_silver scheduled__2025-11-23T16:00:00+00:00 [running]> on host 4731e9e89e36
+[2025-11-23T16:05:11.754+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='luccanegrini@outlook.com.br' AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run_silver' AIRFLOW_CTX_EXECUTION_DATE='2025-11-23T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-23T16:00:00+00:00'
+[2025-11-23T16:05:11.755+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-11-23T16:05:11.756+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    rm -rf /tmp/dbt_runtime &&     mkdir -p /tmp/dbt_runtime &&     cp -r /opt/airflow/dbt/ecommerce_dbt /tmp/dbt_runtime/ecommerce_dbt &&     cd /tmp/dbt_runtime/ecommerce_dbt &&     dbt run --select tag:silver       --project-dir /tmp/dbt_runtime/ecommerce_dbt       --profiles-dir /home/airflow/.dbt\n    ']
+[2025-11-23T16:05:11.769+0000] {subprocess.py:86} INFO - Output:
+[2025-11-23T16:05:15.794+0000] {subprocess.py:93} INFO - [0m16:05:15  Running with dbt=1.7.19
+[2025-11-23T16:05:16.475+0000] {subprocess.py:93} INFO - [0m16:05:16  [[33mWARNING[0m]: Deprecated functionality
+[2025-11-23T16:05:16.475+0000] {subprocess.py:93} INFO - The `log-path` config in `dbt_project.yml` has been deprecated, and will no
+[2025-11-23T16:05:16.476+0000] {subprocess.py:93} INFO - longer be supported in a future version of dbt-core. If you wish to write dbt
+[2025-11-23T16:05:16.476+0000] {subprocess.py:93} INFO - logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH
+[2025-11-23T16:05:16.476+0000] {subprocess.py:93} INFO - env var instead.
+[2025-11-23T16:05:16.630+0000] {subprocess.py:93} INFO - [0m16:05:16  Registered adapter: snowflake=1.7.2
+[2025-11-23T16:05:16.649+0000] {subprocess.py:93} INFO - [0m16:05:16  Unable to do partial parsing because of a version mismatch
+[2025-11-23T16:05:17.508+0000] {subprocess.py:93} INFO - [0m16:05:17  [[33mWARNING[0m]: Did not find matching node for patch with name 'events' in the 'models' section of file 'models/bronze/schema.yml'
+[2025-11-23T16:05:17.587+0000] {subprocess.py:93} INFO - [0m16:05:17  Encountered an error:
+[2025-11-23T16:05:17.587+0000] {subprocess.py:93} INFO - Compilation Error
+[2025-11-23T16:05:17.588+0000] {subprocess.py:93} INFO -   dbt found two sources with the name "bronze_events".
+[2025-11-23T16:05:17.588+0000] {subprocess.py:93} INFO - 
+[2025-11-23T16:05:17.588+0000] {subprocess.py:93} INFO -   Since these resources have the same name, dbt will be unable to find the correct resource
+[2025-11-23T16:05:17.589+0000] {subprocess.py:93} INFO -   when looking for source("bronze", "events").
+[2025-11-23T16:05:17.589+0000] {subprocess.py:93} INFO - 
+[2025-11-23T16:05:17.589+0000] {subprocess.py:93} INFO -   To fix this, change the name of one of these resources:
+[2025-11-23T16:05:17.589+0000] {subprocess.py:93} INFO -   - source.ecommerce_dbt.bronze.events (models/bronze/schema.yml)
+[2025-11-23T16:05:17.590+0000] {subprocess.py:93} INFO -   - source.ecommerce_dbt.bronze.events (models/sources.yml)
+[2025-11-23T16:05:18.387+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-11-23T16:05:18.393+0000] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-11-23T16:05:18.396+0000] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=dbt_ecommerce_pipeline, task_id=dbt_run_silver, execution_date=20251123T160000, start_date=20251123T160511, end_date=20251123T160518
+[2025-11-23T16:05:18.718+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 9 for task dbt_run_silver (Bash command failed. The command returned a non-zero exit code 2.; 309)
+[2025-11-23T16:05:18.735+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-11-23T16:05:18.742+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py:1201 AirflowProviderDeprecationWarning: Call to deprecated class SnowflakeOperator. (This class is deprecated. Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`. Also, you can provide `hook_params={'warehouse': <warehouse>, 'database': <database>, 'role': <role>, 'schema': <schema>, 'authenticator': <authenticator>,'session_parameters': <session_parameters>}`.)
+[2025-11-23T16:05:18.749+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

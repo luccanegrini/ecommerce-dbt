@@ -1,0 +1,71 @@
+[2025-11-23T21:00:56.084+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_test scheduled__2025-11-23T20:55:00+00:00 [queued]>
+[2025-11-23T21:00:56.088+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_test scheduled__2025-11-23T20:55:00+00:00 [queued]>
+[2025-11-23T21:00:56.088+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 3
+[2025-11-23T21:00:56.098+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): dbt_test> on 2025-11-23 20:55:00+00:00
+[2025-11-23T21:00:56.105+0000] {standard_task_runner.py:60} INFO - Started process 9128 to run task
+[2025-11-23T21:00:56.109+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'dbt_test', 'scheduled__2025-11-23T20:55:00+00:00', '--job-id', '263', '--raw', '--subdir', 'DAGS_FOLDER/dbt_ecommerce_pipeline.py', '--cfg-path', '/tmp/tmprycmb6s9']
+[2025-11-23T21:00:56.112+0000] {standard_task_runner.py:88} INFO - Job 263: Subtask dbt_test
+[2025-11-23T21:00:56.158+0000] {task_command.py:423} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.dbt_test scheduled__2025-11-23T20:55:00+00:00 [running]> on host 4731e9e89e36
+[2025-11-23T21:00:56.202+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2025-11-23T20:55:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-23T20:55:00+00:00'
+[2025-11-23T21:00:56.203+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-11-23T21:00:56.205+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    rm -rf /tmp/dbt_runtime &&     mkdir -p /tmp/dbt_runtime &&     cp -r /opt/airflow/dbt/ecommerce_dbt /tmp/dbt_runtime/ecommerce_dbt &&     cd /tmp/dbt_runtime/ecommerce_dbt &&     dbt test       --project-dir /tmp/dbt_runtime/ecommerce_dbt       --profiles-dir /home/airflow/.dbt\n    ']
+[2025-11-23T21:00:56.216+0000] {subprocess.py:86} INFO - Output:
+[2025-11-23T21:00:59.981+0000] {subprocess.py:93} INFO - [0m21:00:59  Running with dbt=1.7.19
+[2025-11-23T21:01:00.646+0000] {subprocess.py:93} INFO - [0m21:01:00  [[33mWARNING[0m]: Deprecated functionality
+[2025-11-23T21:01:00.647+0000] {subprocess.py:93} INFO - The `log-path` config in `dbt_project.yml` has been deprecated, and will no
+[2025-11-23T21:01:00.647+0000] {subprocess.py:93} INFO - longer be supported in a future version of dbt-core. If you wish to write dbt
+[2025-11-23T21:01:00.647+0000] {subprocess.py:93} INFO - logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH
+[2025-11-23T21:01:00.648+0000] {subprocess.py:93} INFO - env var instead.
+[2025-11-23T21:01:00.775+0000] {subprocess.py:93} INFO - [0m21:01:00  Registered adapter: snowflake=1.7.2
+[2025-11-23T21:01:00.871+0000] {subprocess.py:93} INFO - [0m21:01:00  Found 10 models, 19 tests, 1 source, 0 exposures, 0 metrics, 431 macros, 0 groups, 0 semantic models
+[2025-11-23T21:01:00.874+0000] {subprocess.py:93} INFO - [0m21:01:00
+[2025-11-23T21:01:03.016+0000] {subprocess.py:93} INFO - [0m21:01:03  Concurrency: 1 threads (target='dev')
+[2025-11-23T21:01:03.017+0000] {subprocess.py:93} INFO - [0m21:01:03
+[2025-11-23T21:01:03.024+0000] {subprocess.py:93} INFO - [0m21:01:03  1 of 19 START test not_null_campaign_performance_campaign_id ................... [RUN]
+[2025-11-23T21:01:04.090+0000] {subprocess.py:93} INFO - [0m21:01:04  1 of 19 PASS not_null_campaign_performance_campaign_id ......................... [[32mPASS[0m in 1.07s]
+[2025-11-23T21:01:04.091+0000] {subprocess.py:93} INFO - [0m21:01:04  2 of 19 START test not_null_dim_campaigns_campaign_id .......................... [RUN]
+[2025-11-23T21:01:05.168+0000] {subprocess.py:93} INFO - [0m21:01:05  2 of 19 PASS not_null_dim_campaigns_campaign_id ................................ [[32mPASS[0m in 1.08s]
+[2025-11-23T21:01:05.170+0000] {subprocess.py:93} INFO - [0m21:01:05  3 of 19 START test not_null_dim_products_product_id ............................ [RUN]
+[2025-11-23T21:01:06.192+0000] {subprocess.py:93} INFO - [0m21:01:06  3 of 19 PASS not_null_dim_products_product_id .................................. [[32mPASS[0m in 1.02s]
+[2025-11-23T21:01:06.194+0000] {subprocess.py:93} INFO - [0m21:01:06  4 of 19 START test not_null_dim_sessions_session_id ............................ [RUN]
+[2025-11-23T21:01:07.206+0000] {subprocess.py:93} INFO - [0m21:01:07  4 of 19 PASS not_null_dim_sessions_session_id .................................. [[32mPASS[0m in 1.01s]
+[2025-11-23T21:01:07.207+0000] {subprocess.py:93} INFO - [0m21:01:07  5 of 19 START test not_null_dim_users_user_id .................................. [RUN]
+[2025-11-23T21:01:08.219+0000] {subprocess.py:93} INFO - [0m21:01:08  5 of 19 PASS not_null_dim_users_user_id ........................................ [[32mPASS[0m in 1.01s]
+[2025-11-23T21:01:08.220+0000] {subprocess.py:93} INFO - [0m21:01:08  6 of 19 START test not_null_fct_event_items_event_id ........................... [RUN]
+[2025-11-23T21:01:09.246+0000] {subprocess.py:93} INFO - [0m21:01:09  6 of 19 PASS not_null_fct_event_items_event_id ................................. [[32mPASS[0m in 1.03s]
+[2025-11-23T21:01:09.247+0000] {subprocess.py:93} INFO - [0m21:01:09  7 of 19 START test not_null_fct_events_event_id ................................ [RUN]
+[2025-11-23T21:01:10.206+0000] {subprocess.py:93} INFO - [0m21:01:10  7 of 19 PASS not_null_fct_events_event_id ...................................... [[32mPASS[0m in 0.96s]
+[2025-11-23T21:01:10.207+0000] {subprocess.py:93} INFO - [0m21:01:10  8 of 19 START test not_null_funnel_daily_event_date ............................ [RUN]
+[2025-11-23T21:01:11.209+0000] {subprocess.py:93} INFO - [0m21:01:11  8 of 19 PASS not_null_funnel_daily_event_date .................................. [[32mPASS[0m in 1.00s]
+[2025-11-23T21:01:11.210+0000] {subprocess.py:93} INFO - [0m21:01:11  9 of 19 START test not_null_product_performance_product_id ..................... [RUN]
+[2025-11-23T21:01:12.357+0000] {subprocess.py:93} INFO - [0m21:01:12  9 of 19 PASS not_null_product_performance_product_id ........................... [[32mPASS[0m in 1.15s]
+[2025-11-23T21:01:12.359+0000] {subprocess.py:93} INFO - [0m21:01:12  10 of 19 START test not_null_revenue_daily_event_date .......................... [RUN]
+[2025-11-23T21:01:13.419+0000] {subprocess.py:93} INFO - [0m21:01:13  10 of 19 PASS not_null_revenue_daily_event_date ................................ [[32mPASS[0m in 1.06s]
+[2025-11-23T21:01:13.421+0000] {subprocess.py:93} INFO - [0m21:01:13  11 of 19 START test unique_campaign_performance_campaign_id .................... [RUN]
+[2025-11-23T21:01:14.497+0000] {subprocess.py:93} INFO - [0m21:01:14  11 of 19 PASS unique_campaign_performance_campaign_id .......................... [[32mPASS[0m in 1.08s]
+[2025-11-23T21:01:14.499+0000] {subprocess.py:93} INFO - [0m21:01:14  12 of 19 START test unique_dim_campaigns_campaign_id ........................... [RUN]
+[2025-11-23T21:01:15.636+0000] {subprocess.py:93} INFO - [0m21:01:15  12 of 19 PASS unique_dim_campaigns_campaign_id ................................. [[32mPASS[0m in 1.14s]
+[2025-11-23T21:01:15.637+0000] {subprocess.py:93} INFO - [0m21:01:15  13 of 19 START test unique_dim_products_product_id ............................. [RUN]
+[2025-11-23T21:01:16.689+0000] {subprocess.py:93} INFO - [0m21:01:16  13 of 19 PASS unique_dim_products_product_id ................................... [[32mPASS[0m in 1.05s]
+[2025-11-23T21:01:16.691+0000] {subprocess.py:93} INFO - [0m21:01:16  14 of 19 START test unique_dim_sessions_session_id ............................. [RUN]
+[2025-11-23T21:01:17.667+0000] {subprocess.py:93} INFO - [0m21:01:17  14 of 19 PASS unique_dim_sessions_session_id ................................... [[32mPASS[0m in 0.98s]
+[2025-11-23T21:01:17.669+0000] {subprocess.py:93} INFO - [0m21:01:17  15 of 19 START test unique_dim_users_user_id ................................... [RUN]
+[2025-11-23T21:01:18.664+0000] {subprocess.py:93} INFO - [0m21:01:18  15 of 19 PASS unique_dim_users_user_id ......................................... [[32mPASS[0m in 0.99s]
+[2025-11-23T21:01:18.666+0000] {subprocess.py:93} INFO - [0m21:01:18  16 of 19 START test unique_fct_events_event_id ................................. [RUN]
+[2025-11-23T21:01:19.822+0000] {subprocess.py:93} INFO - [0m21:01:19  16 of 19 PASS unique_fct_events_event_id ....................................... [[32mPASS[0m in 1.16s]
+[2025-11-23T21:01:19.823+0000] {subprocess.py:93} INFO - [0m21:01:19  17 of 19 START test unique_funnel_daily_event_date ............................. [RUN]
+[2025-11-23T21:01:20.806+0000] {subprocess.py:93} INFO - [0m21:01:20  17 of 19 PASS unique_funnel_daily_event_date ................................... [[32mPASS[0m in 0.98s]
+[2025-11-23T21:01:20.807+0000] {subprocess.py:93} INFO - [0m21:01:20  18 of 19 START test unique_product_performance_product_id ...................... [RUN]
+[2025-11-23T21:01:21.982+0000] {subprocess.py:93} INFO - [0m21:01:21  18 of 19 PASS unique_product_performance_product_id ............................ [[32mPASS[0m in 1.17s]
+[2025-11-23T21:01:21.983+0000] {subprocess.py:93} INFO - [0m21:01:21  19 of 19 START test unique_revenue_daily_event_date ............................ [RUN]
+[2025-11-23T21:01:22.965+0000] {subprocess.py:93} INFO - [0m21:01:22  19 of 19 PASS unique_revenue_daily_event_date .................................. [[32mPASS[0m in 0.98s]
+[2025-11-23T21:01:22.968+0000] {subprocess.py:93} INFO - [0m21:01:22
+[2025-11-23T21:01:22.968+0000] {subprocess.py:93} INFO - [0m21:01:22  Finished running 19 tests in 0 hours 0 minutes and 22.09 seconds (22.09s).
+[2025-11-23T21:01:22.982+0000] {subprocess.py:93} INFO - [0m21:01:22
+[2025-11-23T21:01:22.982+0000] {subprocess.py:93} INFO - [0m21:01:22  [32mCompleted successfully[0m
+[2025-11-23T21:01:22.983+0000] {subprocess.py:93} INFO - [0m21:01:22
+[2025-11-23T21:01:22.983+0000] {subprocess.py:93} INFO - [0m21:01:22  Done. PASS=19 WARN=0 ERROR=0 SKIP=0 TOTAL=19
+[2025-11-23T21:01:23.741+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-11-23T21:01:23.757+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dbt_ecommerce_pipeline, task_id=dbt_test, execution_date=20251123T205500, start_date=20251123T210056, end_date=20251123T210123
+[2025-11-23T21:01:23.774+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-11-23T21:01:23.781+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

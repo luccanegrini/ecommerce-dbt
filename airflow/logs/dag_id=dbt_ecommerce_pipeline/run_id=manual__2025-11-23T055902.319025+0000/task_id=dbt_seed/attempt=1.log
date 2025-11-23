@@ -1,0 +1,31 @@
+[2025-11-23T06:05:59.946+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_seed manual__2025-11-23T05:59:02.319025+00:00 [queued]>
+[2025-11-23T06:05:59.951+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_seed manual__2025-11-23T05:59:02.319025+00:00 [queued]>
+[2025-11-23T06:05:59.951+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2025-11-23T06:05:59.962+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): dbt_seed> on 2025-11-23 05:59:02.319025+00:00
+[2025-11-23T06:05:59.968+0000] {standard_task_runner.py:60} INFO - Started process 1139 to run task
+[2025-11-23T06:05:59.971+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'dbt_seed', 'manual__2025-11-23T05:59:02.319025+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_dbt_pipeline.py', '--cfg-path', '/tmp/tmpxg0h4kap']
+[2025-11-23T06:05:59.973+0000] {standard_task_runner.py:88} INFO - Job 29: Subtask dbt_seed
+[2025-11-23T06:06:00.008+0000] {task_command.py:423} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.dbt_seed manual__2025-11-23T05:59:02.319025+00:00 [running]> on host 7244b0bf02d5
+[2025-11-23T06:06:00.048+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='dbt_seed' AIRFLOW_CTX_EXECUTION_DATE='2025-11-23T05:59:02.319025+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-11-23T05:59:02.319025+00:00'
+[2025-11-23T06:06:00.050+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-11-23T06:06:00.051+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    rm -rf /tmp/dbt_runtime &&     mkdir -p /tmp/dbt_runtime &&     cp -r /opt/airflow/dbt/ecommerce_dbt /tmp/dbt_runtime/ecommerce_dbt &&     cd /tmp/dbt_runtime/ecommerce_dbt &&     dbt seed       --project-dir /tmp/dbt_runtime/ecommerce_dbt       --profiles-dir /home/airflow/.dbt\n    ']
+[2025-11-23T06:06:00.064+0000] {subprocess.py:86} INFO - Output:
+[2025-11-23T06:06:03.280+0000] {subprocess.py:93} INFO - [0m06:06:03  Running with dbt=1.7.19
+[2025-11-23T06:06:03.958+0000] {subprocess.py:93} INFO - [0m06:06:03  [[33mWARNING[0m]: Deprecated functionality
+[2025-11-23T06:06:03.959+0000] {subprocess.py:93} INFO - The `log-path` config in `dbt_project.yml` has been deprecated, and will no
+[2025-11-23T06:06:03.959+0000] {subprocess.py:93} INFO - longer be supported in a future version of dbt-core. If you wish to write dbt
+[2025-11-23T06:06:03.959+0000] {subprocess.py:93} INFO - logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH
+[2025-11-23T06:06:03.959+0000] {subprocess.py:93} INFO - env var instead.
+[2025-11-23T06:06:04.093+0000] {subprocess.py:93} INFO - [0m06:06:04  Registered adapter: snowflake=1.7.2
+[2025-11-23T06:06:04.113+0000] {subprocess.py:93} INFO - [0m06:06:04  Unable to do partial parsing because of a version mismatch
+[2025-11-23T06:06:05.167+0000] {subprocess.py:93} INFO - [0m06:06:05  Found 12 models, 25 tests, 4 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[2025-11-23T06:06:05.171+0000] {subprocess.py:93} INFO - [0m06:06:05
+[2025-11-23T06:06:05.171+0000] {subprocess.py:93} INFO - [0m06:06:05  Nothing to do. Try checking your model configs and model specification args
+[2025-11-23T06:06:05.178+0000] {subprocess.py:93} INFO - [0m06:06:05
+[2025-11-23T06:06:05.179+0000] {subprocess.py:93} INFO - [0m06:06:05  [32mCompleted successfully[0m
+[2025-11-23T06:06:05.179+0000] {subprocess.py:93} INFO - [0m06:06:05
+[2025-11-23T06:06:05.180+0000] {subprocess.py:93} INFO - [0m06:06:05  Done. PASS=0 WARN=0 ERROR=0 SKIP=0 TOTAL=0
+[2025-11-23T06:06:05.975+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-11-23T06:06:05.990+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dbt_ecommerce_pipeline, task_id=dbt_seed, execution_date=20251123T055902, start_date=20251123T060559, end_date=20251123T060605
+[2025-11-23T06:06:06.028+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-11-23T06:06:06.039+0000] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

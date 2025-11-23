@@ -1,0 +1,58 @@
+[2025-11-23T06:06:17.692+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_run manual__2025-11-23T05:59:02.319025+00:00 [queued]>
+[2025-11-23T06:06:17.697+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_run manual__2025-11-23T05:59:02.319025+00:00 [queued]>
+[2025-11-23T06:06:17.697+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2025-11-23T06:06:17.707+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): dbt_run> on 2025-11-23 05:59:02.319025+00:00
+[2025-11-23T06:06:17.715+0000] {standard_task_runner.py:60} INFO - Started process 1230 to run task
+[2025-11-23T06:06:17.718+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'dbt_run', 'manual__2025-11-23T05:59:02.319025+00:00', '--job-id', '31', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_dbt_pipeline.py', '--cfg-path', '/tmp/tmpprumemrq']
+[2025-11-23T06:06:17.720+0000] {standard_task_runner.py:88} INFO - Job 31: Subtask dbt_run
+[2025-11-23T06:06:17.767+0000] {task_command.py:423} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.dbt_run manual__2025-11-23T05:59:02.319025+00:00 [running]> on host 7244b0bf02d5
+[2025-11-23T06:06:17.814+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2025-11-23T05:59:02.319025+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-11-23T05:59:02.319025+00:00'
+[2025-11-23T06:06:17.815+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-11-23T06:06:17.817+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    rm -rf /tmp/dbt_runtime &&     mkdir -p /tmp/dbt_runtime &&     cp -r /opt/airflow/dbt/ecommerce_dbt /tmp/dbt_runtime/ecommerce_dbt &&     cd /tmp/dbt_runtime/ecommerce_dbt &&     dbt run       --project-dir /tmp/dbt_runtime/ecommerce_dbt       --profiles-dir /home/airflow/.dbt\n    ']
+[2025-11-23T06:06:17.829+0000] {subprocess.py:86} INFO - Output:
+[2025-11-23T06:06:20.949+0000] {subprocess.py:93} INFO - [0m06:06:20  Running with dbt=1.7.19
+[2025-11-23T06:06:21.621+0000] {subprocess.py:93} INFO - [0m06:06:21  [[33mWARNING[0m]: Deprecated functionality
+[2025-11-23T06:06:21.622+0000] {subprocess.py:93} INFO - The `log-path` config in `dbt_project.yml` has been deprecated, and will no
+[2025-11-23T06:06:21.622+0000] {subprocess.py:93} INFO - longer be supported in a future version of dbt-core. If you wish to write dbt
+[2025-11-23T06:06:21.622+0000] {subprocess.py:93} INFO - logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH
+[2025-11-23T06:06:21.623+0000] {subprocess.py:93} INFO - env var instead.
+[2025-11-23T06:06:21.749+0000] {subprocess.py:93} INFO - [0m06:06:21  Registered adapter: snowflake=1.7.2
+[2025-11-23T06:06:21.768+0000] {subprocess.py:93} INFO - [0m06:06:21  Unable to do partial parsing because of a version mismatch
+[2025-11-23T06:06:22.793+0000] {subprocess.py:93} INFO - [0m06:06:22  Found 12 models, 25 tests, 4 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[2025-11-23T06:06:22.795+0000] {subprocess.py:93} INFO - [0m06:06:22
+[2025-11-23T06:06:24.857+0000] {subprocess.py:93} INFO - [0m06:06:24  Concurrency: 1 threads (target='dev')
+[2025-11-23T06:06:24.857+0000] {subprocess.py:93} INFO - [0m06:06:24
+[2025-11-23T06:06:24.864+0000] {subprocess.py:93} INFO - [0m06:06:24  1 of 12 START sql table model DEV.dim_date ..................................... [RUN]
+[2025-11-23T06:06:26.672+0000] {subprocess.py:93} INFO - [0m06:06:26  1 of 12 OK created sql table model DEV.dim_date ................................ [[32mSUCCESS 1[0m in 1.81s]
+[2025-11-23T06:06:26.674+0000] {subprocess.py:93} INFO - [0m06:06:26  2 of 12 START sql view model DEV.stg_order_items ............................... [RUN]
+[2025-11-23T06:06:27.762+0000] {subprocess.py:93} INFO - [0m06:06:27  2 of 12 OK created sql view model DEV.stg_order_items .......................... [[32mSUCCESS 1[0m in 1.09s]
+[2025-11-23T06:06:27.764+0000] {subprocess.py:93} INFO - [0m06:06:27  3 of 12 START sql view model DEV.stg_orders .................................... [RUN]
+[2025-11-23T06:06:28.974+0000] {subprocess.py:93} INFO - [0m06:06:28  3 of 12 OK created sql view model DEV.stg_orders ............................... [[32mSUCCESS 1[0m in 1.21s]
+[2025-11-23T06:06:28.975+0000] {subprocess.py:93} INFO - [0m06:06:28  4 of 12 START sql view model DEV.stg_products .................................. [RUN]
+[2025-11-23T06:06:29.997+0000] {subprocess.py:93} INFO - [0m06:06:29  4 of 12 OK created sql view model DEV.stg_products ............................. [[32mSUCCESS 1[0m in 1.02s]
+[2025-11-23T06:06:29.999+0000] {subprocess.py:93} INFO - [0m06:06:29  5 of 12 START sql view model DEV.stg_users ..................................... [RUN]
+[2025-11-23T06:06:31.105+0000] {subprocess.py:93} INFO - [0m06:06:31  5 of 12 OK created sql view model DEV.stg_users ................................ [[32mSUCCESS 1[0m in 1.11s]
+[2025-11-23T06:06:31.106+0000] {subprocess.py:93} INFO - [0m06:06:31  6 of 12 START sql table model DEV.fct_cohort_monthly ........................... [RUN]
+[2025-11-23T06:06:32.655+0000] {subprocess.py:93} INFO - [0m06:06:32  6 of 12 OK created sql table model DEV.fct_cohort_monthly ...................... [[32mSUCCESS 1[0m in 1.55s]
+[2025-11-23T06:06:32.656+0000] {subprocess.py:93} INFO - [0m06:06:32  7 of 12 START sql table model DEV.fct_daily_sales .............................. [RUN]
+[2025-11-23T06:06:34.459+0000] {subprocess.py:93} INFO - [0m06:06:34  7 of 12 OK created sql table model DEV.fct_daily_sales ......................... [[32mSUCCESS 1[0m in 1.80s]
+[2025-11-23T06:06:34.461+0000] {subprocess.py:93} INFO - [0m06:06:34  8 of 12 START sql table model DEV.fct_order_items .............................. [RUN]
+[2025-11-23T06:06:36.123+0000] {subprocess.py:93} INFO - [0m06:06:36  8 of 12 OK created sql table model DEV.fct_order_items ......................... [[32mSUCCESS 1[0m in 1.66s]
+[2025-11-23T06:06:36.124+0000] {subprocess.py:93} INFO - [0m06:06:36  9 of 12 START sql table model DEV.fct_rfm_customer ............................. [RUN]
+[2025-11-23T06:06:37.751+0000] {subprocess.py:93} INFO - [0m06:06:37  9 of 12 OK created sql table model DEV.fct_rfm_customer ........................ [[32mSUCCESS 1[0m in 1.62s]
+[2025-11-23T06:06:37.753+0000] {subprocess.py:93} INFO - [0m06:06:37  10 of 12 START sql table model DEV.dim_product ................................. [RUN]
+[2025-11-23T06:06:39.797+0000] {subprocess.py:93} INFO - [0m06:06:39  10 of 12 OK created sql table model DEV.dim_product ............................ [[32mSUCCESS 1[0m in 2.04s]
+[2025-11-23T06:06:39.799+0000] {subprocess.py:93} INFO - [0m06:06:39  11 of 12 START sql table model DEV.dim_user .................................... [RUN]
+[2025-11-23T06:06:41.559+0000] {subprocess.py:93} INFO - [0m06:06:41  11 of 12 OK created sql table model DEV.dim_user ............................... [[32mSUCCESS 1[0m in 1.76s]
+[2025-11-23T06:06:41.561+0000] {subprocess.py:93} INFO - [0m06:06:41  12 of 12 START sql table model DEV.fct_sales ................................... [RUN]
+[2025-11-23T06:06:43.046+0000] {subprocess.py:93} INFO - [0m06:06:43  12 of 12 OK created sql table model DEV.fct_sales .............................. [[32mSUCCESS 1[0m in 1.48s]
+[2025-11-23T06:06:43.050+0000] {subprocess.py:93} INFO - [0m06:06:43
+[2025-11-23T06:06:43.051+0000] {subprocess.py:93} INFO - [0m06:06:43  Finished running 8 table models, 4 view models in 0 hours 0 minutes and 20.25 seconds (20.25s).
+[2025-11-23T06:06:43.068+0000] {subprocess.py:93} INFO - [0m06:06:43
+[2025-11-23T06:06:43.068+0000] {subprocess.py:93} INFO - [0m06:06:43  [32mCompleted successfully[0m
+[2025-11-23T06:06:43.069+0000] {subprocess.py:93} INFO - [0m06:06:43
+[2025-11-23T06:06:43.069+0000] {subprocess.py:93} INFO - [0m06:06:43  Done. PASS=12 WARN=0 ERROR=0 SKIP=0 TOTAL=12
+[2025-11-23T06:06:44.023+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-11-23T06:06:44.038+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dbt_ecommerce_pipeline, task_id=dbt_run, execution_date=20251123T055902, start_date=20251123T060617, end_date=20251123T060644
+[2025-11-23T06:06:44.059+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-11-23T06:06:44.068+0000] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

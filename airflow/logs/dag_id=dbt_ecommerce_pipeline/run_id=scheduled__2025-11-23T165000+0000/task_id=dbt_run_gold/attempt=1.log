@@ -1,0 +1,49 @@
+[2025-11-23T16:55:33.115+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_run_gold scheduled__2025-11-23T16:50:00+00:00 [queued]>
+[2025-11-23T16:55:33.119+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_run_gold scheduled__2025-11-23T16:50:00+00:00 [queued]>
+[2025-11-23T16:55:33.120+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 3
+[2025-11-23T16:55:33.132+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): dbt_run_gold> on 2025-11-23 16:50:00+00:00
+[2025-11-23T16:55:33.138+0000] {standard_task_runner.py:60} INFO - Started process 2226 to run task
+[2025-11-23T16:55:33.141+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'dbt_run_gold', 'scheduled__2025-11-23T16:50:00+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/dbt_ecommerce_pipeline.py', '--cfg-path', '/tmp/tmp870zjqbk']
+[2025-11-23T16:55:33.143+0000] {standard_task_runner.py:88} INFO - Job 66: Subtask dbt_run_gold
+[2025-11-23T16:55:33.180+0000] {task_command.py:423} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.dbt_run_gold scheduled__2025-11-23T16:50:00+00:00 [running]> on host 4731e9e89e36
+[2025-11-23T16:55:33.221+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run_gold' AIRFLOW_CTX_EXECUTION_DATE='2025-11-23T16:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-23T16:50:00+00:00'
+[2025-11-23T16:55:33.222+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-11-23T16:55:33.223+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    rm -rf /tmp/dbt_runtime &&     mkdir -p /tmp/dbt_runtime &&     cp -r /opt/airflow/dbt/ecommerce_dbt /tmp/dbt_runtime/ecommerce_dbt &&     cd /tmp/dbt_runtime/ecommerce_dbt &&     dbt run --select tag:gold       --project-dir /tmp/dbt_runtime/ecommerce_dbt       --profiles-dir /home/airflow/.dbt\n    ']
+[2025-11-23T16:55:33.235+0000] {subprocess.py:86} INFO - Output:
+[2025-11-23T16:55:37.030+0000] {subprocess.py:93} INFO - [0m16:55:37  Running with dbt=1.7.19
+[2025-11-23T16:55:37.668+0000] {subprocess.py:93} INFO - [0m16:55:37  [[33mWARNING[0m]: Deprecated functionality
+[2025-11-23T16:55:37.669+0000] {subprocess.py:93} INFO - The `log-path` config in `dbt_project.yml` has been deprecated, and will no
+[2025-11-23T16:55:37.669+0000] {subprocess.py:93} INFO - longer be supported in a future version of dbt-core. If you wish to write dbt
+[2025-11-23T16:55:37.669+0000] {subprocess.py:93} INFO - logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH
+[2025-11-23T16:55:37.670+0000] {subprocess.py:93} INFO - env var instead.
+[2025-11-23T16:55:37.789+0000] {subprocess.py:93} INFO - [0m16:55:37  Registered adapter: snowflake=1.7.2
+[2025-11-23T16:55:37.889+0000] {subprocess.py:93} INFO - [0m16:55:37  Found 10 models, 19 tests, 1 source, 0 exposures, 0 metrics, 431 macros, 0 groups, 0 semantic models
+[2025-11-23T16:55:37.891+0000] {subprocess.py:93} INFO - [0m16:55:37
+[2025-11-23T16:55:42.014+0000] {subprocess.py:93} INFO - [0m16:55:42  Concurrency: 1 threads (target='dev')
+[2025-11-23T16:55:42.015+0000] {subprocess.py:93} INFO - [0m16:55:42
+[2025-11-23T16:55:42.022+0000] {subprocess.py:93} INFO - [0m16:55:42  1 of 4 START sql incremental model -- Se o modelo definiu +schema, usa só ele (ex: silver, gold)
+[2025-11-23T16:55:42.025+0000] {subprocess.py:93} INFO -         gold.campaign_performance  [RUN]
+[2025-11-23T16:55:43.870+0000] {subprocess.py:93} INFO - [0m16:55:43  1 of 4 OK created sql incremental model -- Se o modelo definiu +schema, usa só ele (ex: silver, gold)
+[2025-11-23T16:55:43.871+0000] {subprocess.py:93} INFO -         gold.campaign_performance  [[32mSUCCESS 1[0m in 1.85s]
+[2025-11-23T16:55:43.872+0000] {subprocess.py:93} INFO - [0m16:55:43  2 of 4 START sql incremental model -- Se o modelo definiu +schema, usa só ele (ex: silver, gold)
+[2025-11-23T16:55:43.872+0000] {subprocess.py:93} INFO -         gold.funnel_daily  [RUN]
+[2025-11-23T16:55:45.702+0000] {subprocess.py:93} INFO - [0m16:55:45  2 of 4 OK created sql incremental model -- Se o modelo definiu +schema, usa só ele (ex: silver, gold)
+[2025-11-23T16:55:45.703+0000] {subprocess.py:93} INFO -         gold.funnel_daily  [[32mSUCCESS 1[0m in 1.83s]
+[2025-11-23T16:55:45.704+0000] {subprocess.py:93} INFO - [0m16:55:45  3 of 4 START sql incremental model -- Se o modelo definiu +schema, usa só ele (ex: silver, gold)
+[2025-11-23T16:55:45.704+0000] {subprocess.py:93} INFO -         gold.product_performance  [RUN]
+[2025-11-23T16:55:47.534+0000] {subprocess.py:93} INFO - [0m16:55:47  3 of 4 OK created sql incremental model -- Se o modelo definiu +schema, usa só ele (ex: silver, gold)
+[2025-11-23T16:55:47.534+0000] {subprocess.py:93} INFO -         gold.product_performance  [[32mSUCCESS 1[0m in 1.83s]
+[2025-11-23T16:55:47.535+0000] {subprocess.py:93} INFO - [0m16:55:47  4 of 4 START sql incremental model -- Se o modelo definiu +schema, usa só ele (ex: silver, gold)
+[2025-11-23T16:55:47.535+0000] {subprocess.py:93} INFO -         gold.revenue_daily  [RUN]
+[2025-11-23T16:55:49.047+0000] {subprocess.py:93} INFO - [0m16:55:49  4 of 4 OK created sql incremental model -- Se o modelo definiu +schema, usa só ele (ex: silver, gold)
+[2025-11-23T16:55:49.047+0000] {subprocess.py:93} INFO -         gold.revenue_daily  [[32mSUCCESS 1[0m in 1.51s]
+[2025-11-23T16:55:49.050+0000] {subprocess.py:93} INFO - [0m16:55:49
+[2025-11-23T16:55:49.050+0000] {subprocess.py:93} INFO - [0m16:55:49  Finished running 4 incremental models in 0 hours 0 minutes and 11.16 seconds (11.16s).
+[2025-11-23T16:55:49.063+0000] {subprocess.py:93} INFO - [0m16:55:49
+[2025-11-23T16:55:49.064+0000] {subprocess.py:93} INFO - [0m16:55:49  [32mCompleted successfully[0m
+[2025-11-23T16:55:49.064+0000] {subprocess.py:93} INFO - [0m16:55:49
+[2025-11-23T16:55:49.065+0000] {subprocess.py:93} INFO - [0m16:55:49  Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
+[2025-11-23T16:55:59.117+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-11-23T16:55:59.133+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dbt_ecommerce_pipeline, task_id=dbt_run_gold, execution_date=20251123T165000, start_date=20251123T165533, end_date=20251123T165559
+[2025-11-23T16:55:59.162+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-11-23T16:55:59.170+0000] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

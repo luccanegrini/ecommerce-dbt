@@ -1,0 +1,84 @@
+[2025-11-23T04:24:41.202+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_test scheduled__2025-11-22T00:00:00+00:00 [queued]>
+[2025-11-23T04:24:41.206+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_ecommerce_pipeline.dbt_test scheduled__2025-11-22T00:00:00+00:00 [queued]>
+[2025-11-23T04:24:41.206+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2025-11-23T04:24:41.216+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): dbt_test> on 2025-11-22 00:00:00+00:00
+[2025-11-23T04:24:41.221+0000] {standard_task_runner.py:60} INFO - Started process 448 to run task
+[2025-11-23T04:24:41.224+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dbt_ecommerce_pipeline', 'dbt_test', 'scheduled__2025-11-22T00:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_dbt_pipeline.py', '--cfg-path', '/tmp/tmp6dxcqn5a']
+[2025-11-23T04:24:41.226+0000] {standard_task_runner.py:88} INFO - Job 9: Subtask dbt_test
+[2025-11-23T04:24:41.264+0000] {task_command.py:423} INFO - Running <TaskInstance: dbt_ecommerce_pipeline.dbt_test scheduled__2025-11-22T00:00:00+00:00 [running]> on host 7244b0bf02d5
+[2025-11-23T04:24:41.301+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dbt_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2025-11-22T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-11-22T00:00:00+00:00'
+[2025-11-23T04:24:41.302+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-11-23T04:24:41.303+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    rm -rf /tmp/dbt_runtime &&     mkdir -p /tmp/dbt_runtime &&     cp -r /opt/airflow/dbt/ecommerce_dbt /tmp/dbt_runtime/ecommerce_dbt &&     cd /tmp/dbt_runtime/ecommerce_dbt &&     dbt test       --project-dir /tmp/dbt_runtime/ecommerce_dbt       --profiles-dir /home/airflow/.dbt\n    ']
+[2025-11-23T04:24:41.312+0000] {subprocess.py:86} INFO - Output:
+[2025-11-23T04:24:44.758+0000] {subprocess.py:93} INFO - [0m04:24:44  Running with dbt=1.7.19
+[2025-11-23T04:24:45.415+0000] {subprocess.py:93} INFO - [0m04:24:45  [[33mWARNING[0m]: Deprecated functionality
+[2025-11-23T04:24:45.415+0000] {subprocess.py:93} INFO - The `log-path` config in `dbt_project.yml` has been deprecated, and will no
+[2025-11-23T04:24:45.415+0000] {subprocess.py:93} INFO - longer be supported in a future version of dbt-core. If you wish to write dbt
+[2025-11-23T04:24:45.416+0000] {subprocess.py:93} INFO - logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH
+[2025-11-23T04:24:45.416+0000] {subprocess.py:93} INFO - env var instead.
+[2025-11-23T04:24:45.539+0000] {subprocess.py:93} INFO - [0m04:24:45  Registered adapter: snowflake=1.7.2
+[2025-11-23T04:24:45.558+0000] {subprocess.py:93} INFO - [0m04:24:45  Unable to do partial parsing because of a version mismatch
+[2025-11-23T04:24:46.599+0000] {subprocess.py:93} INFO - [0m04:24:46  Found 12 models, 25 tests, 4 sources, 0 exposures, 0 metrics, 430 macros, 0 groups, 0 semantic models
+[2025-11-23T04:24:46.601+0000] {subprocess.py:93} INFO - [0m04:24:46
+[2025-11-23T04:24:47.612+0000] {subprocess.py:93} INFO - [0m04:24:47  Concurrency: 1 threads (target='dev')
+[2025-11-23T04:24:47.613+0000] {subprocess.py:93} INFO - [0m04:24:47
+[2025-11-23T04:24:47.620+0000] {subprocess.py:93} INFO - [0m04:24:47  1 of 25 START test not_null_dim_date_date_day .................................. [RUN]
+[2025-11-23T04:24:48.704+0000] {subprocess.py:93} INFO - [0m04:24:48  1 of 25 PASS not_null_dim_date_date_day ........................................ [[32mPASS[0m in 1.08s]
+[2025-11-23T04:24:48.705+0000] {subprocess.py:93} INFO - [0m04:24:48  2 of 25 START test not_null_dim_product_product_id ............................. [RUN]
+[2025-11-23T04:24:49.738+0000] {subprocess.py:93} INFO - [0m04:24:49  2 of 25 PASS not_null_dim_product_product_id ................................... [[32mPASS[0m in 1.03s]
+[2025-11-23T04:24:49.739+0000] {subprocess.py:93} INFO - [0m04:24:49  3 of 25 START test not_null_dim_user_user_id ................................... [RUN]
+[2025-11-23T04:24:50.766+0000] {subprocess.py:93} INFO - [0m04:24:50  3 of 25 PASS not_null_dim_user_user_id ......................................... [[32mPASS[0m in 1.03s]
+[2025-11-23T04:24:50.768+0000] {subprocess.py:93} INFO - [0m04:24:50  4 of 25 START test not_null_fct_daily_sales_date_day ........................... [RUN]
+[2025-11-23T04:24:51.813+0000] {subprocess.py:93} INFO - [0m04:24:51  4 of 25 PASS not_null_fct_daily_sales_date_day ................................. [[32mPASS[0m in 1.04s]
+[2025-11-23T04:24:51.814+0000] {subprocess.py:93} INFO - [0m04:24:51  5 of 25 START test not_null_fct_rfm_customer_user_id ........................... [RUN]
+[2025-11-23T04:24:52.819+0000] {subprocess.py:93} INFO - [0m04:24:52  5 of 25 PASS not_null_fct_rfm_customer_user_id ................................. [[32mPASS[0m in 1.00s]
+[2025-11-23T04:24:52.821+0000] {subprocess.py:93} INFO - [0m04:24:52  6 of 25 START test not_null_fct_sales_order_id ................................. [RUN]
+[2025-11-23T04:24:53.855+0000] {subprocess.py:93} INFO - [0m04:24:53  6 of 25 PASS not_null_fct_sales_order_id ....................................... [[32mPASS[0m in 1.03s]
+[2025-11-23T04:24:53.857+0000] {subprocess.py:93} INFO - [0m04:24:53  7 of 25 START test not_null_fct_sales_product_id ............................... [RUN]
+[2025-11-23T04:24:54.896+0000] {subprocess.py:93} INFO - [0m04:24:54  7 of 25 PASS not_null_fct_sales_product_id ..................................... [[32mPASS[0m in 1.04s]
+[2025-11-23T04:24:54.897+0000] {subprocess.py:93} INFO - [0m04:24:54  8 of 25 START test not_null_stg_order_items_order_id ........................... [RUN]
+[2025-11-23T04:24:55.871+0000] {subprocess.py:93} INFO - [0m04:24:55  8 of 25 PASS not_null_stg_order_items_order_id ................................. [[32mPASS[0m in 0.97s]
+[2025-11-23T04:24:55.873+0000] {subprocess.py:93} INFO - [0m04:24:55  9 of 25 START test not_null_stg_order_items_product_id ......................... [RUN]
+[2025-11-23T04:24:57.036+0000] {subprocess.py:93} INFO - [0m04:24:57  9 of 25 PASS not_null_stg_order_items_product_id ............................... [[32mPASS[0m in 1.16s]
+[2025-11-23T04:24:57.037+0000] {subprocess.py:93} INFO - [0m04:24:57  10 of 25 START test not_null_stg_orders_order_id ............................... [RUN]
+[2025-11-23T04:24:58.004+0000] {subprocess.py:93} INFO - [0m04:24:58  10 of 25 PASS not_null_stg_orders_order_id ..................................... [[32mPASS[0m in 0.97s]
+[2025-11-23T04:24:58.006+0000] {subprocess.py:93} INFO - [0m04:24:58  11 of 25 START test not_null_stg_products_product_id ........................... [RUN]
+[2025-11-23T04:24:59.021+0000] {subprocess.py:93} INFO - [0m04:24:59  11 of 25 PASS not_null_stg_products_product_id ................................. [[32mPASS[0m in 1.01s]
+[2025-11-23T04:24:59.022+0000] {subprocess.py:93} INFO - [0m04:24:59  12 of 25 START test not_null_stg_users_user_id ................................. [RUN]
+[2025-11-23T04:25:00.017+0000] {subprocess.py:93} INFO - [0m04:25:00  12 of 25 PASS not_null_stg_users_user_id ....................................... [[32mPASS[0m in 0.99s]
+[2025-11-23T04:25:00.018+0000] {subprocess.py:93} INFO - [0m04:25:00  13 of 25 START test source_not_null_ecommerce_silver_ORDERS_ORDER_ID ........... [RUN]
+[2025-11-23T04:25:01.010+0000] {subprocess.py:93} INFO - [0m04:25:01  13 of 25 PASS source_not_null_ecommerce_silver_ORDERS_ORDER_ID ................. [[32mPASS[0m in 0.99s]
+[2025-11-23T04:25:01.011+0000] {subprocess.py:93} INFO - [0m04:25:01  14 of 25 START test source_not_null_ecommerce_silver_ORDER_ITEMS_ORDER_ID ...... [RUN]
+[2025-11-23T04:25:02.248+0000] {subprocess.py:93} INFO - [0m04:25:02  14 of 25 PASS source_not_null_ecommerce_silver_ORDER_ITEMS_ORDER_ID ............ [[32mPASS[0m in 1.24s]
+[2025-11-23T04:25:02.250+0000] {subprocess.py:93} INFO - [0m04:25:02  15 of 25 START test source_not_null_ecommerce_silver_ORDER_ITEMS_PRODUCT_ID .... [RUN]
+[2025-11-23T04:25:03.230+0000] {subprocess.py:93} INFO - [0m04:25:03  15 of 25 PASS source_not_null_ecommerce_silver_ORDER_ITEMS_PRODUCT_ID .......... [[32mPASS[0m in 0.98s]
+[2025-11-23T04:25:03.231+0000] {subprocess.py:93} INFO - [0m04:25:03  16 of 25 START test source_not_null_ecommerce_silver_PRODUCTS_PRODUCT_ID ....... [RUN]
+[2025-11-23T04:25:04.224+0000] {subprocess.py:93} INFO - [0m04:25:04  16 of 25 PASS source_not_null_ecommerce_silver_PRODUCTS_PRODUCT_ID ............. [[32mPASS[0m in 0.99s]
+[2025-11-23T04:25:04.226+0000] {subprocess.py:93} INFO - [0m04:25:04  17 of 25 START test source_not_null_ecommerce_silver_USERS_USER_ID ............. [RUN]
+[2025-11-23T04:25:05.631+0000] {subprocess.py:93} INFO - [0m04:25:05  17 of 25 PASS source_not_null_ecommerce_silver_USERS_USER_ID ................... [[32mPASS[0m in 1.40s]
+[2025-11-23T04:25:05.633+0000] {subprocess.py:93} INFO - [0m04:25:05  18 of 25 START test source_unique_ecommerce_silver_PRODUCTS_PRODUCT_ID ......... [RUN]
+[2025-11-23T04:25:06.675+0000] {subprocess.py:93} INFO - [0m04:25:06  18 of 25 PASS source_unique_ecommerce_silver_PRODUCTS_PRODUCT_ID ............... [[32mPASS[0m in 1.04s]
+[2025-11-23T04:25:06.677+0000] {subprocess.py:93} INFO - [0m04:25:06  19 of 25 START test source_unique_ecommerce_silver_USERS_USER_ID ............... [RUN]
+[2025-11-23T04:25:07.686+0000] {subprocess.py:93} INFO - [0m04:25:07  19 of 25 PASS source_unique_ecommerce_silver_USERS_USER_ID ..................... [[32mPASS[0m in 1.01s]
+[2025-11-23T04:25:07.688+0000] {subprocess.py:93} INFO - [0m04:25:07  20 of 25 START test unique_dim_date_date_day ................................... [RUN]
+[2025-11-23T04:25:08.670+0000] {subprocess.py:93} INFO - [0m04:25:08  20 of 25 PASS unique_dim_date_date_day ......................................... [[32mPASS[0m in 0.98s]
+[2025-11-23T04:25:08.672+0000] {subprocess.py:93} INFO - [0m04:25:08  21 of 25 START test unique_dim_product_product_id .............................. [RUN]
+[2025-11-23T04:25:09.672+0000] {subprocess.py:93} INFO - [0m04:25:09  21 of 25 PASS unique_dim_product_product_id .................................... [[32mPASS[0m in 1.00s]
+[2025-11-23T04:25:09.674+0000] {subprocess.py:93} INFO - [0m04:25:09  22 of 25 START test unique_dim_user_user_id .................................... [RUN]
+[2025-11-23T04:25:10.814+0000] {subprocess.py:93} INFO - [0m04:25:10  22 of 25 PASS unique_dim_user_user_id .......................................... [[32mPASS[0m in 1.14s]
+[2025-11-23T04:25:10.816+0000] {subprocess.py:93} INFO - [0m04:25:10  23 of 25 START test unique_fct_rfm_customer_user_id ............................ [RUN]
+[2025-11-23T04:25:11.927+0000] {subprocess.py:93} INFO - [0m04:25:11  23 of 25 PASS unique_fct_rfm_customer_user_id .................................. [[32mPASS[0m in 1.11s]
+[2025-11-23T04:25:11.929+0000] {subprocess.py:93} INFO - [0m04:25:11  24 of 25 START test unique_stg_products_product_id ............................. [RUN]
+[2025-11-23T04:25:12.938+0000] {subprocess.py:93} INFO - [0m04:25:12  24 of 25 PASS unique_stg_products_product_id ................................... [[32mPASS[0m in 1.01s]
+[2025-11-23T04:25:12.940+0000] {subprocess.py:93} INFO - [0m04:25:12  25 of 25 START test unique_stg_users_user_id ................................... [RUN]
+[2025-11-23T04:25:14.062+0000] {subprocess.py:93} INFO - [0m04:25:14  25 of 25 PASS unique_stg_users_user_id ......................................... [[32mPASS[0m in 1.12s]
+[2025-11-23T04:25:14.065+0000] {subprocess.py:93} INFO - [0m04:25:14
+[2025-11-23T04:25:14.066+0000] {subprocess.py:93} INFO - [0m04:25:14  Finished running 25 tests in 0 hours 0 minutes and 27.46 seconds (27.46s).
+[2025-11-23T04:25:14.093+0000] {subprocess.py:93} INFO - [0m04:25:14
+[2025-11-23T04:25:14.093+0000] {subprocess.py:93} INFO - [0m04:25:14  [32mCompleted successfully[0m
+[2025-11-23T04:25:14.094+0000] {subprocess.py:93} INFO - [0m04:25:14
+[2025-11-23T04:25:14.094+0000] {subprocess.py:93} INFO - [0m04:25:14  Done. PASS=25 WARN=0 ERROR=0 SKIP=0 TOTAL=25
+[2025-11-23T04:25:14.933+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-11-23T04:25:14.949+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dbt_ecommerce_pipeline, task_id=dbt_test, execution_date=20251122T000000, start_date=20251123T042441, end_date=20251123T042514
+[2025-11-23T04:25:14.968+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-11-23T04:25:14.974+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
