@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: ECOMMERCE
+    schema: BRONZE
+    tables:
+      - name: events
+        description: "Raw events from ECOMMERCE_STAGE"

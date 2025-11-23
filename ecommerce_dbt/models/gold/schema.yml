@@ -1,0 +1,141 @@
+version: 2
+
+models:
+
+  # ============================================================
+  # CAMPAIGN PERFORMANCE
+  # ============================================================
+  - name: campaign_performance
+    description: "Tabela com métricas completas de performance por campanha de marketing."
+    columns:
+      - name: campaign_id
+        description: "Identificador único da campanha."
+        tests:
+          - not_null
+          - unique
+
+      - name: first_event_ts
+        description: "Timestamp do primeiro evento relacionado à campanha."
+
+      - name: last_event_ts
+        description: "Timestamp do último evento relacionado à campanha."
+
+      - name: total_events
+        description: "Total de eventos atribuídos à campanha."
+
+      - name: total_views
+        description: "Quantidade de eventos do tipo view_item associados à campanha."
+
+      - name: total_add_to_cart
+        description: "Quantidade de eventos do tipo add_to_cart associados à campanha."
+
+      - name: total_purchases
+        description: "Quantidade total de compras associadas à campanha."
+
+      - name: unique_users
+        description: "Número de usuários únicos envolvidos com a campanha."
+
+      - name: total_revenue
+        description: "Receita total atribuída à campanha."
+
+      - name: view_to_cart_rate
+        description: "Taxa de conversão view_item → add_to_cart da campanha."
+
+      - name: cart_to_purchase_rate
+        description: "Taxa de conversão add_to_cart → purchase da campanha."
+
+      - name: view_to_purchase_rate
+        description: "Taxa de conversão view_item → purchase da campanha."
+
+      - name: avg_ticket
+        description: "Ticket médio da campanha."
+
+  # ============================================================
+  # FUNNEL DAILY
+  # ============================================================
+  - name: funnel_daily
+    description: "Funil diário de conversão do e-commerce, agregando todos os eventos por dia."
+    columns:
+      - name: event_date
+        description: "Data do evento agregada."
+        tests:
+          - not_null
+          - unique
+
+      - name: total_events
+        description: "Total de eventos registrados no dia."
+
+      - name: views
+        description: "Total de eventos do tipo view_item no dia."
+
+      - name: add_to_cart
+        description: "Total de eventos add_to_cart no dia."
+
+      - name: purchases
+        description: "Total de eventos purchase no dia."
+
+      - name: view_to_cart_rate
+        description: "Taxa diária de conversão view_item → add_to_cart."
+
+      - name: cart_to_purchase_rate
+        description: "Taxa diária de conversão add_to_cart → purchase."
+
+      - name: view_to_purchase_rate
+        description: "Taxa diária de conversão view_item → purchase."
+
+  # ============================================================
+  # PRODUCT PERFORMANCE
+  # ============================================================
+  - name: product_performance
+    description: "Métricas agregadas de performance do produto (engajamento, vendas e receita)."
+    columns:
+      - name: product_id
+        description: "Identificador único do produto."
+        tests:
+          - not_null
+          - unique
+
+      - name: first_event_ts
+        description: "Timestamp do primeiro evento relacionado ao produto."
+
+      - name: last_event_ts
+        description: "Timestamp do último evento relacionado ao produto."
+
+      - name: total_views
+        description: "Quantidade total de eventos view_item do produto."
+
+      - name: total_purchases
+        description: "Quantidade de compras relacionadas ao produto."
+
+      - name: total_qty_sold
+        description: "Quantidade total vendida do produto."
+
+      - name: total_revenue
+        description: "Receita total gerada pelo produto."
+
+      - name: view_to_purchase_rate
+        description: "Taxa view_item → purchase para o produto."
+
+      - name: avg_ticket
+        description: "Ticket médio gerado pelo produto."
+
+  # ============================================================
+  # REVENUE DAILY
+  # ============================================================
+  - name: revenue_daily
+    description: "Receita agregada por dia, incluindo quantidade de itens e preço médio."
+    columns:
+      - name: event_date
+        description: "Data de agregação da receita."
+        tests:
+          - not_null
+          - unique
+
+      - name: total_revenue
+        description: "Receita total do dia."
+
+      - name: total_qty
+        description: "Quantidade total de itens vendidos no dia."
+
+      - name: avg_price
+        description: "Preço médio dos itens vendidos no dia."

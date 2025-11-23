@@ -1,0 +1,19 @@
+services:
+  airflow:
+    image: apache/airflow:2.8.4-python3.11
+    container_name: airflow_ecommerce
+    restart: unless-stopped
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      # aqui a gente instala dbt-snowflake estável
+      - _PIP_ADDITIONAL_REQUIREMENTS=dbt-snowflake==1.7.2
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./ecommerce_dbt:/opt/airflow/dbt/ecommerce_dbt
+      - C:/Users/User/.dbt/ecommerce_dbt_profiles:/home/airflow/.dbt
+    ports:
+      - "8099:8080"   # já que 8080 está ocupado no host
+    command: ["airflow", "standalone"]

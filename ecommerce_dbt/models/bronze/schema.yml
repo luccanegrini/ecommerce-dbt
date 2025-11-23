@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: bronze_events   # tem que ser o NOME do arquivo .sql na pasta bronze (sem .sql)
+    description: "Tabela bronze com os eventos do ecommerce"
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+      - name: event_type
+      - name: event_ts

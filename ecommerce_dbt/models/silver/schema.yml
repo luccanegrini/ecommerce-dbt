@@ -1,0 +1,161 @@
+version: 2
+
+models:
+  - name: dim_campaigns
+    description: "Dimensão de campanhas de marketing com janelas de atividade e métricas agregadas de performance."
+    columns:
+      - name: campaign_id
+        description: "Identificador único da campanha."
+        tests:
+          - not_null
+          - unique
+      - name: first_event_ts
+        description: "Timestamp do primeiro evento registrado para a campanha."
+      - name: last_event_ts
+        description: "Timestamp do último evento registrado para a campanha."
+      - name: total_events
+        description: "Quantidade total de eventos associados à campanha."
+      - name: total_views
+        description: "Total de visualizações (view_item) atribuídas à campanha."
+      - name: total_add_to_cart
+        description: "Total de eventos de add_to_cart atribuídos à campanha."
+      - name: total_purchases
+        description: "Total de eventos de purchase atribuídos à campanha."
+      - name: unique_users
+        description: "Quantidade de usuários únicos impactados pela campanha."
+      - name: total_revenue
+        description: "Receita total atribuída à campanha."
+
+  - name: dim_products
+    description: "Dimensão de produtos com métricas agregadas de performance e vendas."
+    columns:
+      - name: product_id
+        description: "Identificador único do produto."
+        tests:
+          - not_null
+          - unique
+      - name: first_event_ts
+        description: "Timestamp do primeiro evento relacionado ao produto."
+      - name: last_event_ts
+        description: "Timestamp do último evento relacionado ao produto."
+      - name: total_qty_sold
+        description: "Quantidade total vendida do produto."
+      - name: total_revenue
+        description: "Receita total gerada pelo produto."
+      - name: total_views
+        description: "Total de visualizações (view_item) do produto."
+      - name: total_purchases
+        description: "Total de eventos de purchase envolvendo o produto."
+
+  - name: dim_sessions
+    description: "Dimensão de sessões de navegação dos usuários, com métricas agregadas de engajamento e conversão."
+    columns:
+      - name: session_id
+        description: "Identificador único da sessão."
+        tests:
+          - not_null
+          - unique
+      - name: session_start_ts
+        description: "Timestamp do primeiro evento da sessão."
+      - name: session_end_ts
+        description: "Timestamp do último evento da sessão."
+      - name: session_duration_seconds
+        description: "Duração da sessão em segundos."
+      - name: events_count
+        description: "Total de eventos na sessão."
+      - name: views_count
+        description: "Quantidade de eventos de visualização (view_item) na sessão."
+      - name: add_to_cart_count
+        description: "Quantidade de eventos de add_to_cart na sessão."
+      - name: purchase_count
+        description: "Quantidade de eventos de purchase na sessão."
+      - name: has_purchase
+        description: "Indicador se a sessão teve pelo menos um purchase."
+      - name: user_id
+        description: "Identificador do usuário associado à sessão."
+      - name: campaign_id
+        description: "Identificador da campanha associada à sessão (quando aplicável)."
+
+  - name: dim_users
+    description: "Dimensão de usuários com histórico de atividade, compras e campanhas recentes."
+    columns:
+      - name: user_id
+        description: "Identificador único do usuário."
+        tests:
+          - not_null
+          - unique
+      - name: first_event_ts
+        description: "Timestamp do primeiro evento registrado para o usuário."
+      - name: last_event_ts
+        description: "Timestamp do último evento registrado para o usuário."
+      - name: total_events
+        description: "Quantidade total de eventos gerados pelo usuário."
+      - name: total_purchases
+        description: "Quantidade total de compras (purchase) realizadas pelo usuário."
+      - name: last_purchase_ts
+        description: "Timestamp da última compra do usuário."
+      - name: last_campaign_id
+        description: "ID da última campanha associada à atividade do usuário."
+
+  - name: fct_events
+    description: "Fato de eventos do e-commerce, com uma linha por evento registrado."
+    columns:
+      - name: event_id
+        description: "Identificador único do evento."
+        tests:
+          - not_null
+          - unique
+      - name: event_type
+        description: "Tipo do evento (ex.: view_item, add_to_cart, purchase)."
+      - name: event_ts
+        description: "Timestamp do evento."
+      - name: event_date
+        description: "Data (somente dia) do evento."
+      - name: user_id
+        description: "Usuário associado ao evento."
+      - name: session_id
+        description: "Sessão em que o evento ocorreu."
+      - name: campaign_id
+        description: "Campanha atribuída ao evento, quando existente."
+      - name: currency
+        description: "Moeda associada ao evento."
+      - name: inserted_at
+        description: "Timestamp de ingestão do evento na base."
+      - name: is_view_item
+        description: "Flag indicando se o evento é do tipo view_item."
+      - name: is_add_to_cart
+        description: "Flag indicando se o evento é do tipo add_to_cart."
+      - name: is_purchase
+        description: "Flag indicando se o evento é do tipo purchase."
+
+  - name: fct_event_items
+    description: "Fato de itens associados a eventos (ex.: itens de um purchase), com granularidade evento x produto."
+    columns:
+      - name: event_id
+        description: "Identificador do evento pai."
+        tests:
+          - not_null
+      - name: event_type
+        description: "Tipo do evento (normalmente purchase, mas pode incluir outros conforme o modelo)."
+      - name: event_ts
+        description: "Timestamp do evento."
+      - name: event_date
+        description: "Data (somente dia) do evento."
+      - name: user_id
+        description: "Usuário associado ao evento."
+      - name: session_id
+        description: "Sessão associada ao evento."
+      - name: campaign_id
+        description: "Campanha atribuída ao evento."
+      - name: currency
+        description: "Moeda da transação."
+      - name: product_id
+        description: "Produto associado ao item."
+      - name: qty
+        description: "Quantidade do produto no evento."
+      - name: price
+        description: "Preço unitário do produto no momento do evento."
+      - name: gross_revenue
+        description: "Receita bruta (qty * price) do item no evento."
+      - name: inserted_at
+        description: "Timestamp de ingestão do registro na base."
