@@ -128,7 +128,7 @@ Testes incluídos:
 ## 📬 Contato
 
 **Lucas Negrini**
-📧 Email:
+📧 Email: Luccanegrini@outlook.com.br
 🔗 GitHub: [https://github.com/luccanegrini](https://github.com/luccanegrini)
-
+🔗 Site: Luccanegrini.com.br
 ---
