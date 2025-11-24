@@ -4,6 +4,14 @@ Este projeto implementa um pipeline completo de dados para um ambiente de e‑co
 
 ---
 
+<p align="center">
+  <a href="https://youtu.be/gRw-gSxdzoI">
+    <img src="https://img.youtube.com/vi/gRw-gSxdzoI/hqdefault.jpg" 
+         alt="Pipeline vídeo" width="600">
+  </a>
+</p>
+
+
 ## 🚀 Visão Geral do Pipeline
 
 O pipeline foi construído para processar dados de eventos de navegação, sessões, produtos, campanhas e comportamento do usuário, desde a ingestão até a disponibilização para dashboards e análises.
